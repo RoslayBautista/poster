@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Póster - Certificación de Competencias Laborales SENA</title>
+    <style>
+        :root {
+            --sena-green: #00843D;
+            --sena-blue: #004A94;
+            --light-green: #e8f5ee;
+            --light-blue: #e8f0f7;
+            --light-gray: #f5f5f5;
+        }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #eee;
+            color: #333;
+        }
+        
+        .poster-container {
+            width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .header {
+            background-color: var(--sena-green);
+            color: white;
+            padding: 30px 20px 30px 200px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .main-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 22px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 160px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .blue-bar {
+            height: 15px;
+            background-color: var(--sena-blue);
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .intro-section {
+            background-color: var(--light-gray);
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        
+        .participants-section {
+            background-color: var(--light-green);
+        }
+        
+        .requirements-section {
+            background-color: var(--light-blue);
+        }
+        
+        .process-section {
+            background-color: #fff6e6;
+        }
+        
+        .benefits-section {
+            background-color: var(--light-blue);
+        }
+        
+        .normative-section {
+            background-color: var(--light-gray);
+            text-align: center;
+            font-size: 15px;
+            padding: 15px;
+        }
+        
+        .section-title {
+            color: var(--sena-blue);
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .participants-section .section-title,
+        .requirements-section .section-title {
+            color: var(--sena-green);
+        }
+        
+        .process-section .section-title {
+            color: #c45500;
+        }
+        
+        ul {
+            padding-left: 25px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 30px;
+            line-height: 1.5;
+        }
+        
+        .bullet-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--sena-green);
+            border-radius: 50%;
+        }
+        
+        .numbered-list {
+            counter-reset: step-counter;
+        }
+        
+        .numbered-list li {
+            counter-increment: step-counter;
+        }
+        
+        .numbered-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background-color: #c45500;
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .requirement-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .icon {
+            min-width: 40px;
+            height: 40px;
+            background-color: var(--sena-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 14px;
+        }
+        
+        .icon-content {
+            line-height: 1.4;
+        }
+        
+        .req-title {
+            font-weight: bold;
+            display: block;
+            font-size: 17px;
+        }
+        
+        .req-subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .images-section {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        
+        .worker-image {
+            width: 120px;
+            height: 120px;
+            background-color: var(--light-gray);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .worker-image::after {
+            content: "👷‍♂️";
+            font-size: 50px;
+        }
+        
+        .worker-image:nth-child(2)::after {
+            content: "👩‍🔧";
+        }
+        
+        .worker-image:nth-child(3)::after {
+            content: "👨‍💼";
+        }
+        
+        .seal {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--sena-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sena-green);
+            font-weight: bold;
+            margin: 20px auto;
+            position: relative;
+            font-size: 12px;
+            text-align: center;
+            transform: rotate(-15deg);
+        }
+        
+        .seal::before {
+            content: "";
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border: 1px dashed var(--sena-green);
+            border-radius: 50%;
+        }
+        
+        .cta {
+            background-color: var(--sena-green);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .contact {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="poster-container">
+        <!-- Encabezado -->
+        <div class="header">
+            <div class="logo">
+                <img src="./senaEccl.png" alt="Logo SENA ECCL">
+            </div>
+            <h1 class="main-title">¡CERTIFICA TUS COMPETENCIAS LABORALES!</h1>
+            <p class="subtitle">Participa en el proceso de Evaluación y Certificación del SENA</p>
+        </div>
+        
+        <div class="blue-bar"></div>
+        
+        <div class="content">
+            <!-- Introducción -->
+            <div class="section intro-section">
+                <p>Las normas de competencia laborales son estándares que definen las funciones, conocimientos y habilidades necesarias para desempeñar un trabajo con calidad. ¡Certifica tus capacidades y mejora tus oportunidades laborales!</p>
+            </div>
+            
+            <!-- Quiénes pueden participar -->
+            <div class="section participants-section">
+                <h2 class="section-title">¿QUIÉNES PUEDEN PARTICIPAR?</h2>
+                <ul class="bullet-list">
+                    <li>Trabajadores con experiencia en el área relacionada a la norma de competencia.</li>
+                    <li>Personas interesadas en validar formalmente sus conocimientos y habilidades.</li>
+                </ul>
+            </div>
+            
+            <!-- Requisitos de Ingreso -->
+            <div class="section requirements-section">
+                <h2 class="section-title">REQUISITOS DE INGRESO</h2>
+                <div class="requirements-grid">
+                    <div class="requirement-item">
+                        <div class="icon">18+</div>
+                        <div class="icon-content">
+                            <span class="req-title">Ser mayor de edad</span>
+                            <span class="req-subtitle">(18 años o más)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="requirement-item">
+                        <div class="icon">EXP</div>
+                        <div class="icon-content">
+                            <span class="req-title">Contar con experiencia comprobable</span>
+                            <span class="req-subtitle">en el área de la norma de competencia</span>
+                        </div>
+                    </div>
+                    
+                    <div class="requirement-item">
+                        <div class="icon">ID</div>
+                        <div class="icon-content">
+                            <span class="req-title">Presentar documentos de identidad válidos</span>
+                            <span class="req-subtitle">(cédula de ciudadanía o documento equivalente)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="requirement-item">
+                        <div class="icon">DOC</div>
+                        <div class="icon-content">
+                            <span class="req-title">Diligenciar el formulario de inscripción</span>
+                            <span class="req-subtitle">proporcionado por la entidad certificadora</span>
+                        </div>
+                    </div>
+                    
+                    <div class="requirement-item">
+                        <div class="icon">✓</div>
+                        <div class="icon-content">
+                            <span class="req-title">Aceptar y cumplir los términos y condiciones</span>
+                            <span class="req-subtitle">del proceso de evaluación</span>
+                        </div>
+                    </div>
+                    
+                    <div class="requirement-item">
+                        <div class="icon">CER</div>
+                        <div class="icon-content">
+                            <span class="req-title">En algunos casos:</span>
+                            <span class="req-subtitle">Certificados laborales, referencias o evidencias de trabajos realizados</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Imágenes representativas -->
+            <div class="images-section">
+                <div class="worker-image"></div>
+                <div class="worker-image"></div>
+                <div class="worker-image"></div>
+            </div>
+            
+            <!-- Proceso de Evaluación -->
+            <div class="section process-section">
+                <h2 class="section-title">PROCESO DE EVALUACIÓN Y CERTIFICACIÓN</h2>
+                <ul class="numbered-list">
+                    <li><strong>Inscripción gratuita y voluntaria.</strong></li>
+                    <li><strong>Revisión de requisitos y documentación.</strong></li>
+                    <li><strong>Evaluación práctica y teórica</strong> según la norma de competencia.</li>
+                    <li><strong>Certificación oficial</strong> emitida por el SENA u otra entidad autorizada.</li>
+                </ul>
+            </div>
+            
+            <!-- Normatividad -->
+            <div class="section normative-section">
+                <h3 style="margin-top:0; font-size:18px; color:var(--sena-blue);">NORMATIVIDAD Y SOPORTE</h3>
+                <p style="margin:5px 0;">Basado en normas sectoriales del SENA y guías del Ministerio de Educación Nacional.</p>
+                <p style="margin:5px 0;">Proceso avalado por comités técnicos y sectoriales.</p>
+                
+                <div class="seal">CERTIFICACIÓN OFICIAL</div>
+            </div>
+            
+            <!-- Beneficios -->
+            <div class="section benefits-section">
+                <h2 class="section-title">BENEFICIOS DE LA CERTIFICACIÓN</h2>
+                <ul class="bullet-list">
+                    <li>Reconocimiento formal de tus competencias.</li>
+                    <li>Mejora de oportunidades laborales y salariales.</li>
+                    <li>Movilidad y proyección profesional.</li>
+                </ul>
+            </div>
+            
+            <!-- Contacto -->
+            <div class="contact">
+                <p>Más información en: <strong>www.sena.edu.co</strong> | Teléfono: <strong>01 8000 910 270</strong></p>
+                <p>¡No dejes pasar esta oportunidad!</p>
+            </div>
+        </div>
+        
+        <!-- Llamado a la acción -->
+        <div class="cta">
+            ¡Certifica lo que sabes hacer. Tu experiencia vale!
+        </div>
+    </div>
+</body>
+</html>
